@@ -7,3 +7,27 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+puts "Seeding database..."
+
+User.find_or_create_by(email: "admin@example.com") do |user|
+  user.name = "Admin User",
+  user.password = "SecurePassword123",
+  user.is_admin = true
+end
+
+puts "Created Admin User."
+
+puts "Creating 10 sample users"
+
+10.times do
+  User.find_or_create_by(email: Faker::Internet.email) do |user|
+    user.name = Faker::Name.name
+    user.password = "password"
+    user.is_admin = false
+  end
+end
+
+puts "Sample users are in place."
+
+puts "Finished seeding."
