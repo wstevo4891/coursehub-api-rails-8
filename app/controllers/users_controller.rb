@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    render json: { users: User.all }
+  end
+
   def show
     user = User.find_by(id: params[:id])
 
