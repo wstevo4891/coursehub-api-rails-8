@@ -3,6 +3,8 @@ class UserSetting
   include Mongoid::Timestamps
 
   # === Fields =============================================
+  field :user_id, type: Integer
+
   field :theme, type: String, default: "light"
 
   field :language, type: String, default: "en"
@@ -10,5 +12,8 @@ class UserSetting
   field :notifications, type: Hash, default: {}
 
   # === Associations =======================================
-  belongs_to :user, class_name: "User"
+  # belongs_to :user, class_name: "User"
+  def user
+    User.find(self.user_id)
+  end
 end

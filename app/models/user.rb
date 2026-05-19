@@ -1,6 +1,13 @@
 class User < ApplicationRecord
   # === Associations =======================================
-  has_one :user_setting, class_name: "UserSetting"
+  # has_one :user_setting, class_name: "UserSetting"
+  def user_setting
+    UserSetting.where(user_id: self.id).first
+  end
+
+  def user_setting=(settings)
+    UserSetting.create!(user_id: self.id, **settings)
+  end
 
   # === Validations ========================================
   has_secure_password
