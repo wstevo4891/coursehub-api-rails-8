@@ -10,16 +10,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    safe_params = user_params
+    user = User.new(user_params)
 
-    if safe_params[:name] == "Eve"
-      render json: {
-        errors: {
-          name: [ "is not allowed" ]
-        }
-      }, status: :unprocessable_entity
+    if user.save
+      render json: user, status: :created
     else
-      render json: safe_params, status: :created
+      render json: { errors: user.errors.to_hash }, status: :unprocessable_content
     end
   end
 
