@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   get "/health", to: "health#index"
 
-  get "/user/:id", to: "users#show"
-
-  post "/users", to: "users#create"
+  resources :users, only: [ :index, :show, :create, :update, :destroy ]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
