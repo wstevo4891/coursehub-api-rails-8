@@ -53,4 +53,9 @@ group :development, :test do
 
   # Use Faker to generate data
   gem "faker", "~> 3.8"
+
+  # Use rswag to generate documentation
+  gem "rswag-api"
+  gem "rswag-ui"
+  gem "rswag-specs"
 end
