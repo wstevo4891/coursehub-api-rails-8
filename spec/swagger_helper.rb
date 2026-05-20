@@ -32,6 +32,20 @@ RSpec.configure do |config|
           url: 'https://api.coursehub.com',
           description: 'Production server'
         }
+      ],
+      components: {
+        securitySchemes: {
+          bearer_auth: {
+            type: :http,
+            scheme: :bearer,
+            bearerFormat: 'JWT'
+          }
+        }
+      },
+      security: [
+        {
+          bearer_auth: []
+        }
       ]
     }
   }
