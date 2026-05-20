@@ -9,7 +9,7 @@ class JsonWebToken
   def self.decode(token)
     decoded = JWT.decode(token, SECRET_KEY).first
     HashWithIndifferentAccess.new(decoded)
-  rescue JWT::ExpiredSignature, JWT::VerificationError => e
+  rescue JWT::ExpiredSignature, JWT::VerificationError
     nil
   end
 end
