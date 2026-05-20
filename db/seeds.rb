@@ -30,12 +30,23 @@ end
 
 puts "Sample users are in place."
 
-puts "Creating a course..."
+puts "Creating courses..."
 
 Course.find_or_create_by(title: "Rails API") do |course|
   course.description = "Learn to build an API in Ruby on Rails."
+  course.status = "draft"
 end
 
-puts "Course created."
+Course.find_or_create_by(title: "Rails with MongoDB") do |course|
+  course.description = "Learn how to build a NoSQL database in Rails with MongoDB."
+  course.status = "draft"
+end
+
+Course.find_or_create_by(title: "Rails with GraphQL") do |course|
+  course.description = "Learn how to build a GraphQL API in Rails."
+  course.status = "draft"
+end
+
+puts "Courses created."
 
 puts "Finished seeding."

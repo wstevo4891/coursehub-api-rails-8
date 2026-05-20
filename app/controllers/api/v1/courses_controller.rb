@@ -14,7 +14,7 @@ module Api
       end
 
       def drafts
-        @draft_courses = Course.where(status: "draft")
+        @draft_courses = Course.drafts
 
         render json: @draft_courses, status: :ok
       end
