@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # === Attributes =========================================
+  has_secure_password
+
   # === Associations =======================================
   has_many :enrollments
   has_many :courses, through: :enrollments
@@ -13,9 +16,12 @@ class User < ApplicationRecord
   end
 
   # === Validations ========================================
-  has_secure_password
   validates :name, presence: true
+
   validates :email, presence: true,
                     uniqueness: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  validates :password, length: { minimum: 6 },
+                       if: -> { new_record? || !password.nil? }
 end
