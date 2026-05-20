@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount Rswag::Api::Engine => "/api-docs"
+
   namespace :api do
     namespace :v1 do
       get "/health", to: "health#index"
