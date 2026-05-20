@@ -35,6 +35,9 @@ gem "image_processing", "~> 1.2"
 # User Mongoid as the Object-Document Mapper (ODM) for MongoDB
 gem "mongoid"
 
+# Use Responders to dry up controller logic
+gem "responders"
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
