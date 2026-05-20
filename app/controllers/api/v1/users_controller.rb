@@ -13,12 +13,12 @@ module Api
       end
 
       def create
-        user = User.new(user_params)
+        @user = User.new(user_params)
 
-        if user.save
-          render json: user, status: :created
+        if @user.save
+          render json: @user, status: :created
         else
-          render json: { errors: user.errors.to_hash }, status: :unprocessable_content
+          render json: { errors: @user.errors.to_hash }, status: :unprocessable_content
         end
       end
 
