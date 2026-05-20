@@ -11,12 +11,14 @@ module Api
       def create
         @enrollment = @course.enrollments.new(enrollment_params)
 
-        @enrollment.user = User.find_by(id: enrollment_params[:user_id])
+        @enrollment.user = current_user
 
         if @enrollment.save
           render json: @enrollment, status: :created
         else
-          render json: { errors: @enrollment.errors.to_hash }, status: :unprocessable_content
+          render json: {
+            errors: @enrollment.errors.to_hash
+          }, status: :unprocessable_content
         end
       end
 
@@ -29,7 +31,7 @@ module Api
       end
 
       def enrollment_params
-        params.require(:enrollment).permit(:user_id)
+        params.fetch(:enrollment, {}).permit
       end
     end
   end
