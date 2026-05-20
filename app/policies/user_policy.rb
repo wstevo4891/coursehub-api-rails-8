@@ -31,4 +31,14 @@ class UserPolicy < ApplicationPolicy
   def admin_or_self?
     user.is_admin? || record == user
   end
+
+  class Scope < ApplicationPolicy::Scope
+    def resolve
+      if user.is_admin?
+        scope.all
+      else
+        scope.where(id: user.id)
+      end
+    end
+  end
 end

@@ -6,8 +6,7 @@ module Api
       before_action :set_user, only: [ :show, :update, :destroy ]
 
       def index
-        authorize User
-        @users = User.all
+        @users = policy_scope(User)
         render json: @users, status: :ok
       end
 
