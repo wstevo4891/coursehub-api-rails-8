@@ -18,7 +18,7 @@ end
 
 puts "Created Admin User."
 
-puts "Creating 10 sample users"
+puts "Creating 10 sample users..."
 
 10.times do
   User.find_or_create_by(email: Faker::Internet.email) do |user|
@@ -29,5 +29,13 @@ puts "Creating 10 sample users"
 end
 
 puts "Sample users are in place."
+
+puts "Creating a course..."
+
+Course.find_or_create_by(title: "Rails API") do |course|
+  course.description = "Learn to build an API in Ruby on Rails."
+end
+
+puts "Course created."
 
 puts "Finished seeding."
