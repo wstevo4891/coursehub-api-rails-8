@@ -6,6 +6,18 @@ Rails.application.routes.draw do
       resources :users, only: [ :index, :show, :create, :update, :destroy ] do
         resource :settings, controller: "user_settings", only: [ :show, :update ]
       end
+
+      resources :courses, only: [ :index, :show, :create, :update, :destroy ] do
+        member do
+          post :publish
+        end
+
+        collection do
+          get :drafts
+        end
+
+        resources :enrollments, only: [ :index, :create ]
+      end
     end
   end
 
