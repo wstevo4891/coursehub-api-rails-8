@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # === Associations =======================================
   has_many :enrollments
   has_many :courses, through: :enrollments
+  has_many :refresh_tokens, dependent: :destroy
 
   # has_one :user_setting, class_name: "UserSetting"
   def user_setting
