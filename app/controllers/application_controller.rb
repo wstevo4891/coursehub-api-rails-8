@@ -3,9 +3,9 @@ class ApplicationController < ActionController::API
 
   before_action :authorize_request
 
-  attr_reader :current_user
-
   private
+
+  attr_reader :current_user
 
   def authorize_request
     token = header_from_request
