@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include Pundit::Authorization
+
   before_action :authorize_request
 
   attr_reader :current_user
@@ -29,5 +31,11 @@ class ApplicationController < ActionController::API
     return nil unless auth_header.present?
 
     auth_header.split(" ").last
+  end
+
+  def user_not_authorized
+    render json: {
+      error: "You are not authorized to perform this action."
+    }, status: :forbidden
   end
 end
