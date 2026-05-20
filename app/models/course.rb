@@ -5,4 +5,9 @@ class Course < ApplicationRecord
   enum :status, %w[draft published]
 
   scope :drafts, -> { where(status: "draft") }
+
+  def publish!
+    self.status = "published"
+    save
+  end
 end
