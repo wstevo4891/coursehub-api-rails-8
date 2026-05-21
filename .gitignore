@@ -31,5 +31,8 @@
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 
+# Ignore test coverage results.
+/coverage
+
 # Ignore development notes
 scratch.txt
