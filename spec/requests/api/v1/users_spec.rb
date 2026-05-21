@@ -2,8 +2,14 @@ require "swagger_helper"
 
 RSpec.describe "Api::V1::Users", type: :request do
   let!(:user) { create(:user) }
+  let!(:admin) { create(:user, :admin) }
+
   let(:access_token) { JsonWebToken.encode(user_id: user.id) }
+  let(:admin_token) { JsonWebToken.encode(user_id: admin.id) }
+
   let(:auth_headers) { { "Authorization" => "Bearer #{access_token}" } }
+  let(:admin_auth_headers) { { "Authorization" => "Bearer #{admin_token}" } }
+
   let(:json_response) { JSON.parse(response.body) }
 
   describe "GET /api/v1/users/:id" do
@@ -41,20 +47,15 @@ RSpec.describe "Api::V1::Users", type: :request do
   describe "POST /api/v1/users" do
     context "with valid parameters" do
       let(:valid_params) do
-        {
-          user: {
-            name: "New User",
-            email: "new@example.com",
-            password: "password123",
-            password_confirmation: "password123"
-          }
-        }
+        { user: attributes_for(:user, name: "Posted User", email: "new@example.com") }
       end
 
       it "creates a new user" do
         expect {
           post "/api/v1/users", params: valid_params, as: :json
         }.to change { User.count }.by(1)
+
+        expect(User.last.name).to eq("Posted User")
       end
 
       it "returns a created status" do
@@ -65,9 +66,8 @@ RSpec.describe "Api::V1::Users", type: :request do
       it "returns the new user data" do
         post "/api/v1/users", params: valid_params, as: :json
 
-        expect(json_response["name"]).to eq("New User")
+        expect(json_response["name"]).to eq("Posted User")
         expect(json_response["email"]).to eq("new@example.com")
-        expect(User.last.name).to eq("New User")
       end
     end
 
