@@ -80,3 +80,8 @@ group :development, :test do
   # Use Database Cleaner to clean data between test runs
   gem "database_cleaner-active_record"
 end
+
+group :test do
+  # Use SimpleCov for test coverage reporting
+  gem "simplecov", require: false
+end
