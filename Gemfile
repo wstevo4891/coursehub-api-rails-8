@@ -41,11 +41,20 @@ gem "jwt"
 # Use Pundit for authorization policies
 gem "pundit"
 
+# Redis client library
+gem "redis"
+
+# Provides Redis integration for Rails features (Cache, Active Job, etc.)
+gem "redis-rails"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
+
+# Use Rack Attack for rate limiting and blocking abusive requests
+# gem "rack-attack"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
