@@ -41,12 +41,6 @@ gem "jwt"
 # Use Pundit for authorization policies
 gem "pundit"
 
-# Redis client library
-gem "redis"
-
-# Provides Redis integration for Rails features (Cache, Active Job, etc.)
-gem "redis-rails"
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
