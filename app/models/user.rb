@@ -25,4 +25,9 @@ class User < ApplicationRecord
 
   validates :password, length: { minimum: 6 },
                        if: -> { new_record? || !password.nil? }
+
+  # === Instance Methods ===================================
+  def admin_status
+    is_admin ? "Administrator" : "User"
+  end
 end

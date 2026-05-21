@@ -94,7 +94,15 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # describe "custom methods" do
-    
-  # end
+  describe "#admin_status" do
+    it "returns 'Administrator' if user is an admin" do
+      admin_user = build(:user, is_admin: true)
+      expect(admin_user.admin_status).to eq("Administrator")
+    end
+
+    it "returns 'User' if user is not an admin" do
+      regular_user = build(:user, is_admin: false)
+      expect(regular_user.admin_status).to eq("User")
+    end
+  end
 end
