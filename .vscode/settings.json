@@ -1,11 +1,10 @@
 {
   "editor.tabSize": 2,
   "[ruby]": {
-    "editor.defaultFormatter": "rubocop.vscode-rubocop",
+    "editor.defaultFormatter": "Shopify.ruby-lsp",
     "editor.formatOnSave": true,
   },
-  "rubocop.mode": "enableViaGemfileOrMissingGemfile",
+  "rubocop.mode": "onlyRunGlobally",
   "ruby.rubocop.configFilePath": "/Users/ericstephenson/Documents/projects/ruby/coursehub-api-rails-8/.rubocop.yml",
-  "ruby.rubocop.executePath": "/Users/ericstephenson/.rubies/ruby-3.3.5/bin/",
-  "ruby.rubocop.useBundler": true
+  "ruby.rubocop.executePath": "/Users/ericstephenson/.rubies/ruby-3.3.5/bin/"
 }
