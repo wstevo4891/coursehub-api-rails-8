@@ -11,9 +11,8 @@ class UserSetting
 
   field :notifications, type: Hash, default: {}
 
-  # === Associations =======================================
-  # belongs_to :user, class_name: "User"
+  # === Instance Methods ===================================
   def user
-    User.find(self.user_id)
+    @user ||= User.find_by(id: self.user_id)
   end
 end

@@ -7,15 +7,6 @@ class User < ApplicationRecord
   has_many :courses, through: :enrollments
   has_many :refresh_tokens, dependent: :destroy
 
-  # has_one :user_setting, class_name: "UserSetting"
-  def user_setting
-    UserSetting.where(user_id: self.id).first
-  end
-
-  def user_setting=(settings)
-    UserSetting.create!(user_id: self.id, **settings)
-  end
-
   # === Validations ========================================
   validates :name, presence: true
 
@@ -29,5 +20,19 @@ class User < ApplicationRecord
   # === Instance Methods ===================================
   def admin_status
     is_admin ? "Administrator" : "User"
+  end
+
+  def user_setting
+    @user_setting ||= UserSetting.find_by(user_id: self.id)
+  rescue Mongoid::Errors::DocumentNotFound
+    nil
+  end
+
+  def user_setting=(settings)
+    if user_setting
+      user_setting.update(**settings)
+    else
+      UserSetting.create!(user_id: self.id, **settings)
+    end
   end
 end
